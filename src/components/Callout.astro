@@ -1,0 +1,51 @@
+---
+interface Props {
+  type: 'info' | 'tip' | 'warning' | 'danger';
+}
+const { type } = Astro.props;
+---
+
+<div class={`callout callout-${type}`} role="alert">
+  <slot />
+</div>
+
+<style>
+  .callout {
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    border-left: 4px solid;
+    margin: 1.5rem 0;
+  }
+
+  .callout-info {
+    background: var(--color-info-bg);
+    border-color: var(--color-info);
+    color: var(--color-info-text);
+  }
+
+  .callout-tip {
+    background: var(--color-tip-bg);
+    border-color: var(--color-tip);
+    color: var(--color-tip-text);
+  }
+
+  .callout-warning {
+    background: var(--color-warning-bg);
+    border-color: var(--color-warning);
+    color: var(--color-warning-text);
+  }
+
+  .callout-danger {
+    background: var(--color-danger-bg);
+    border-color: var(--color-danger);
+    color: var(--color-danger-text);
+  }
+
+  .callout :global(p) {
+    margin: 0;
+  }
+
+  .callout :global(p:not(:last-child)) {
+    margin-bottom: 0.5rem;
+  }
+</style>

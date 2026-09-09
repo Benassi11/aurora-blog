@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Sobre" description="Sobre o Aurora Blog - Um blog fictício sobre tecnologia, desenvolvimento web e produtividade.">
+  <article class="page">
+    <h1>Sobre o Aurora Blog</h1>
+    <p>O <strong>Aurora Blog</strong> é um projeto fictício criado para demonstrar uma estrutura básica de blog usando <strong>Astro + MDX</strong>.</p>
+
+    <h2>Objetivo</h2>
+    <p>Mostrar como construir um blog moderno, rápido e organizado com:</p>
+    <ul>
+      <li>Páginas estáticas geradas em tempo de build</li>
+      <li>Posts escritos em MDX (Markdown + componentes)</li>
+      <li>Layouts reutilizáveis</li>
+      <li>Componentes Astro para UI</li>
+      <li>Metadados e SEO básico</li>
+      <li>Organização clara por responsabilidades</li>
+    </ul>
+
+    <h2>Tecnologias</h2>
+    <ul>
+      <li><a href="https://astro.build/" target="_blank" rel="noopener">Astro</a> - Framework para sites rápidos</li>
+      <li><a href="https://mdxjs.com/" target="_blank" rel="noopener">MDX</a> - Markdown com componentes</li>
+      <li>TypeScript - Tipagem estática</li>
+      <li>CSS - Estilização nativa</li>
+    </ul>
+
+    <h2>Estrutura do Projeto</h2>
+    <pre><code>aurora-blog/
+├── public/
+│   └── images/
+├── src/
+│   ├── components/
+│   ├── content/blog/
+│   ├── layouts/
+│   ├── pages/
+│   ├── styles/
+│   └── content.config.ts
+├── astro.config.mjs
+└── package.json</code></pre>
+
+    <h2>Autores Fictícios</h2>
+    <ul>
+      <li><strong>Marina Costa</strong> - Desenvolvimento Web</li>
+      <li><strong>Rafael Mendes</strong> - Produtividade</li>
+      <li><strong>Lucas Almeida</strong> - Frontend</li>
+    </ul>
+
+    <p><em>Nota: Este é um projeto de demonstração. Todo o conteúdo é fictício.</em></p>
+  </article>
+</BaseLayout>
+
+<style>
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .page h2 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .page h2:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .page ul {
+    margin-left: 1.5rem;
+  }
+</style>

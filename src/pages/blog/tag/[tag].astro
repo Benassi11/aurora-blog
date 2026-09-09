@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const tags = new Set();
+  const posts = await getCollection('blog');
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      tags.add(tag);
+    }
+  }
+  return [...tags].map((tag) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params as { tag: string };
+const posts = (await getCollection('blog'))
+  .filter((post) => post.data.tags.includes(tag))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title={`Tag: ${tag}`} description={`Artigos marcados com ${tag}`}>
+  <header class="blog-header">
+    <h1>#{tag}</h1>
+    <p>Artigos marcados com {tag}.</p>
+  </header>
+
+  <div class="posts-grid">
+    {posts.length === 0 ? (
+      <p class="no-posts">Nenhum artigo encontrado com essa tag.</p>
+    ) : (
+      posts.map((post) => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          category={post.data.category}
+          slug={post.id}
+          heroImage={post.data.heroImage}
+        />
+      ))
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-header h1 {
+    text-transform: capitalize;
+  }
+</style>

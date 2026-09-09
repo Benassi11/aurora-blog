@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title="Blog" description="Todos os artigos do Aurora Blog sobre tecnologia, desenvolvimento web e produtividade.">
+  <header class="blog-header">
+    <h1>Blog</h1>
+    <p>Artigos sobre tecnologia, desenvolvimento web e produtividade para programadores.</p>
+  </header>
+
+  <div class="posts-grid">
+    {posts.map((post) => (
+      <PostCard
+        title={post.data.title}
+        description={post.data.description}
+        pubDate={post.data.pubDate}
+        category={post.data.category}
+        slug={post.id}
+        heroImage={post.data.heroImage}
+      />
+    ))}
+  </div>
+
+  {posts.length === 0 && (
+    <p class="no-posts">Nenhum artigo encontrado.</p>
+  )}
+</BaseLayout>
+
+<style>
+  @media (max-width: 640px) {
+    .blog-header h1 {
+      font-size: 2rem;
+    }
+  }
+</style>

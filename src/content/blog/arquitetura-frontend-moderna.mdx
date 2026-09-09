@@ -1,0 +1,72 @@
+---
+title: "Arquitetura Frontend moderna"
+description: "Uma visão prática sobre organização de projetos frontend pequenos e médios."
+pubDate: 2026-08-28
+author: "Lucas Almeida"
+category: "Frontend"
+tags:
+  - frontend
+  - arquitetura
+  - organização
+heroImage: "/images/posts/arquitetura-frontend.svg"
+---
+
+import Callout from "../../components/Callout.astro";
+
+# Arquitetura Frontend moderna
+
+Uma visão prática sobre organização de projetos frontend pequenos e médios.
+
+<Callout type="warning">
+  Não existe arquitetura perfeita. A melhor é a que seu time consegue manter.
+</Callout>
+
+## Princípios fundamentais
+
+### 1. Separação de responsabilidades
+
+Separe claramente:
+
+- **Componentes de UI** — Botões, inputs, cards (puros, reutilizáveis)
+- **Componentes de negócio** — Lógica específica da aplicação
+- **Páginas/Rotas** — Composição dos componentes acima
+
+### 2. Coloque coisas relacionadas próximas
+
+```
+    src/
+    ├── components/
+    │   ├── ui/          # Botões, Inputs, Cards
+    │   └── features/    # Componentes específicos do domínio
+    ├── hooks/           # Custom hooks compartilhados
+    ├── utils/           # Funções utilitárias puras
+    ├── services/        # API, storage, auth
+    └── pages/           # Rotas da aplicação
+```
+
+<Callout type="tip">
+  Evite pastas genéricas como "components" com 50 arquivos dentro. Agrupe por
+  feature.
+</Callout>
+
+## Gerenciamento de estado
+
+Para projetos pequenos/médios:
+
+- **Estado local** — `useState`, `useReducer` (maioria dos casos)
+- **Estado global leve** — Context API ou Zustand
+- **Estado de servidor** — TanStack Query ou SWR
+
+Evite Redux a menos que a complexidade justifique.
+
+## Estilização
+
+Escolha uma abordagem e seja consistente:
+
+- **CSS Modules** — Simples, nativo, scoped
+- **Tailwind** — Utilitário, rápido para prototipar
+- **Styled Components / Emotion** — CSS-in-JS se precisar de dinamismo avançado
+
+## Conclusão
+
+Arquitetura boa é arquitetura que o time entende e consegue evoluir. Comece simples, evolua conforme a necessidade real aparece.
