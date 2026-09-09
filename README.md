@@ -12,6 +12,11 @@ Um blog simples construído com **Astro + MDX**, criado para **estudos**. Projet
 - **Roteamento automático** — Páginas estáticas por arquivo em `src/pages/`, incluindo rota dinâmica para artigos `[slug]` e filtro por tags
 - **SEO básico** — `<title>`, `<meta description>` e HTML semântico em cada página
 
+## Requisitos
+
+- Node.js >= 22.12.0
+- npm >= 10
+
 ## Stack
 
 - **Astro** v7
